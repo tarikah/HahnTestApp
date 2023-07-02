@@ -1,0 +1,33 @@
+<div></div>
+<div class="container p-3">
+  <button class="btn btn-primary" routerLink="/add">Add New</button>
+  <gui-grid [source]="source" [loading]="loading" class="p-3">
+    <gui-grid-column header="Id" field="id" width="0"> </gui-grid-column>
+    <gui-grid-column header="Name" field="name" width="100"> </gui-grid-column>
+    <gui-grid-column header="Composition" field="composition" width="100">
+    </gui-grid-column>
+    <gui-grid-column header="SerialNumber" field="serialNumber" width="120">
+    </gui-grid-column>
+    <gui-grid-column header="MadeOn" field="madeOn" width="100">
+    </gui-grid-column>
+    <gui-grid-column header="ValidTill" field="validTill" width="100">
+    </gui-grid-column>
+    <gui-grid-column header="Manufacturer" field="manufacturerName" width="120">
+    </gui-grid-column>
+    <gui-grid-column header="Brands" field="brandNames" width="170">
+      <ng-template let-value="value">
+        {{value}}
+      </ng-template>
+    </gui-grid-column>
+    <gui-grid-column header="Type" field="partTypeName" width="100">
+    </gui-grid-column>
+    <gui-grid-column header="Available" field="isAvailable" width="100">
+    </gui-grid-column>
+    <gui-grid-column header="Actions" width="200">
+      <ng-template let-item="item">
+        <button mat-stroked-button (click)="editPart(item)">Edit</button>
+        <button mat-stroked-button (click)="removePart(item)">Remove</button>
+      </ng-template>
+    </gui-grid-column>
+  </gui-grid>
+</div>

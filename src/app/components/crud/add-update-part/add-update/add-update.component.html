@@ -1,0 +1,75 @@
+<div class="container">
+  <form #partForm="ngForm" id="partForm" (ngSubmit)="onSubmit()" class="pt-5 w-50" novalidate>
+    <!-- 2 column grid layout with text inputs for the first and last names -->
+
+    <div class="form-outline mb-4">
+      <label class="form-label">Name</label>
+      <input type="text" name="name" [(ngModel)]="part.name" required class="form-control" />
+      <div style="color: red;" *ngIf="partForm.form.get('name')?.invalid && (partForm.form.get('name')?.dirty || partForm.form.get('name')?.touched)">
+        Please provide a name.
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form6Example3">Composition</label>
+      <input type="text" [(ngModel)]="part.composition" name="composition" required class="form-control" />
+      <div style="color: red;" *ngIf="partForm.form.get('composition')?.invalid && (partForm.form.get('composition')?.dirty || partForm.form.get('composition')?.touched)">
+        Please provide a composition.
+      </div>
+    </div>
+
+    <!-- Text input -->
+    <div class="form-outline mb-4">
+      <label class="form-label" for="form6Example4">Serial number</label>
+      <input type="text" name="serialNumber" [(ngModel)]="part.serialNumber" required class="form-control" />
+      <div style="color: red;" *ngIf="partForm.form.get('serialNumber')?.invalid && (partForm.form.get('serialNumber')?.dirty || partForm.form.get('serialNumber')?.touched)">
+        Please provide a serial number.
+      </div>
+    </div>
+
+    <!-- Email input -->
+    <div class="form-outline mb-4">
+      <label class="form-label">Manufacturer</label>
+      <select name="manufacturerId" [(ngModel)]="part.manufacturerId" required class="form-control">
+        <option disabled value="">Choose Manufacturer</option>
+        <option *ngFor="let item of formData?.manufacturers" value="{{item.id}}">{{item.name}}</option>
+      </select>
+      <div style="color: red;" *ngIf="partForm.form.get('manufacturerId')?.invalid && (partForm.form.get('manufacturerId')?.dirty || partForm.form.get('manufacturerId')?.touched)">
+        Please provide a manufacturer.
+      </div>
+    </div>
+
+    <!-- Number input -->
+    <div class="form-outline mb-4">
+      <label class="form-label">Brand</label>
+      <select name="brandId" [(ngModel)]="part.brands" class="form-control" multiple>
+        <option value="">Choose Brand</option>
+        <option *ngFor="let item of formData?.brands" value="{{item.id}}">{{item.name}}</option>
+      </select>
+      <div style="color: red;" *ngIf="partForm.form.get('brandId')?.invalid && (partForm.form.get('brandId')?.dirty || partForm.form.get('brandId')?.touched)">
+        Please provide a brand.
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label">Part type</label>
+      <select name="partTypeId" [(ngModel)]="part.partTypeId" required class="form-control">
+        <option value="">Choose Part type</option>
+        <option value="1">Oil</option>
+        <option value="2">Brakes</option>
+        <option value="3">Belts</option>
+      </select>
+      <div style="color: red;" *ngIf="partForm.form.get('partTypeId')?.invalid && (partForm.form.get('partTypeId')?.dirty || partForm.form.get('partTypeId')?.touched)">
+        Please provide a part type.
+      </div>
+    </div>
+
+    <div class="form-outline mb-4">
+      <label class="form-label">Quantity</label>
+      <input type="number" name="quantity" [(ngModel)]="part.totalQuantity" required class="form-control" />
+    </div>
+    <!-- Submit button -->
+    <button [disabled]="!partForm.dirty"  type="submit" class="btn btn-primary btn-block mb-4">Create</button>
+  </form>
+</div>
